@@ -1,0 +1,6 @@
+@BioWeb.Server_HostAddress = http://localhost:5258
+
+GET {{BioWeb.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

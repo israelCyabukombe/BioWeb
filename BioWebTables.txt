@@ -1,0 +1,71 @@
+-----------------------------------------------------------
+PersonalInfo Table
+-----------------------------------------------------------
+Id (primary key)
+
+FullName
+
+ProfilePhotoUrl
+
+Tagline
+
+SummaryText
+
+-----------------------------------------------------------
+Biography Table
+-----------------------------------------------------------
+Id
+
+BiographyText
+
+ResumeUrl
+
+
+-----------------------------------------------------------
+Skills Table
+-----------------------------------------------------------
+Id
+
+SkillName
+
+SkillLevel (optional)
+---------------------------------------------------------
+
+WorkExperience Table
+--------------------------------------------
+Id
+
+JobTitle
+
+Company
+
+StartDate
+
+EndDate
+
+Description
+
+--------------------------------------------------------------
+ContactInfo Table
+--------------------------------------------------------------
+Id
+
+Email
+
+Phone
+
+LinkedInUrl
+
+GitHubUrl
+
+ContactMessages Table (optional)
+
+Id
+
+SenderName
+
+SenderEmail
+
+Message
+
+SentAt (timestamp)
