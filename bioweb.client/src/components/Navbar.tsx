@@ -2,12 +2,12 @@ import './Navbar.css';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-function MyNavbar() {
+const MyNavbar = () => {
 
     return (
         <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
             <Container>
-                <Navbar.Brand as={Link}>Iz-Bio</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">Iz-Bio</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mx-auto">
