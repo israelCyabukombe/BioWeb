@@ -6,9 +6,15 @@ import './About.css';
 
 import React, { useState, useEffect } from 'react';
 
-function About() {
+interface PersonalInfo {
+	firstName: string;
+	lastName: string;
+	summaryText: string;
+}
+
+const About = () => {
 	
-	const [personalInfo, setPersonalInfo] = useState(null);
+	const [personalInfo, setPersonalInfo] = useState<PersonalInfo | null>(null);
 	
 	useEffect(() => {
 		fetch('https://localhost:7010/api/personalInfo/1')
@@ -19,14 +25,13 @@ function About() {
 	
 	if (!personalInfo) {
 		return <div>Loading...</div>
-	}
-	
+	}	
 	
 	return (
-		<div class="bg-light">
+		<div className="bg-light">
 			<div className="container bg-light">
 				<div className="row align-items-center py-5">
-					<div class="col-lg-3 col-md-4 text-center mb-4 mb-md-0">
+					<div className="col-lg-3 col-md-4 text-center mb-4 mb-md-0">
 						<div className="d-flex flex-column justify-content-center align-items-center text-center py-5">
 							<img
 								src={myPhoto}
@@ -40,7 +45,7 @@ function About() {
 					<div className="col-lg-6 col-md-5 mb-4 mb-md-0 ps-lg-4">
 						<div style={{maxWidth: '600px'} }>
 							<h4 className="mb-3">
-								Software engineer building reliable web applications
+								Software engineer building reliable web applications??
 							</h4>
 							<p className="text-muted mb-4">
 								I enjoy turning complex problems into simple, robust solutions using modern web technologies.
