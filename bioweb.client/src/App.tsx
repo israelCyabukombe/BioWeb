@@ -1,10 +1,10 @@
 import './App.css';
-import './components/Navbar.jsx';
-import MyNavbar from './components/Navbar.jsx';
+import './components/Navbar.tsx';
+import MyNavbar from './components/Navbar.tsx';
 import { Routes, Route } from 'react-router-dom';;
-import About from './components/About.jsx';
-import Skills from './components/Skills.jsx';
-import Contact from './components/Contact.jsx';
+import About from './components/About.tsx';
+import Skills from './components/Skills.tsx';
+import Contact from './components/Contact.tsx';
 
 function App() {
 
@@ -15,7 +15,7 @@ function App() {
                 <Route path="/" element={<About />} />
                 <Route path="/skills" element={<Skills />} />
                 <Route path="/contact" element={<Contact />} />
-        </Routes>
+            </Routes>
         </>
     );
 }
