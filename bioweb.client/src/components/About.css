@@ -14,3 +14,48 @@
     border-bottom: 1px solid #ddd;
     padding-bottom: 1.5rem;
 }
+
+.about-skills {
+    max-width: 600px;
+    padding: 1.5rem 0;
+}
+
+.skills-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+}
+
+.skills-category {
+}
+
+.category-title {
+    color: #495057;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3.5px;
+    margin-bottom: 1rem;
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+.skill-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 1rem;
+    background: #f8f9fa;
+    color: #495057;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 2px solid #D3D0D9;
+    border-radius: 25px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    white-space: nowrap;
+}
