@@ -18,5 +18,8 @@ namespace BioWeb.Server.Models
         [ForeignKey(nameof(SkillLevel))]
         public int SkillLevelId { get; set; }
         public SkillLevel SkillLevel { get; set; } = null!;
+
+        [MaxLength(20)]
+        public string Category { get; set; } = string.Empty;
     }
 }

@@ -8,6 +8,8 @@
 .logo-img {
     max-width: 100px;
     height: auto;
+    border: 2px solid #f8f9fa;
+    border-radius: 10px;
 }
 
 .logo-img:not(:last-child) {

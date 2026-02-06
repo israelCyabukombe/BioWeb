@@ -3,6 +3,7 @@ using BioWeb.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BioWeb.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260206212632_AddSkillCategory")]
+    partial class AddSkillCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,7 +109,7 @@ namespace BioWeb.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Category = "BackEnd",
+                            Category = "",
                             PersonalInfoId = 1,
                             SkillLevelId = 1,
                             SkillName = "C#"
@@ -114,7 +117,7 @@ namespace BioWeb.Server.Migrations
                         new
                         {
                             Id = 2,
-                            Category = "BackEnd",
+                            Category = "",
                             PersonalInfoId = 1,
                             SkillLevelId = 2,
                             SkillName = "PHP"
@@ -122,7 +125,7 @@ namespace BioWeb.Server.Migrations
                         new
                         {
                             Id = 3,
-                            Category = "BackEnd",
+                            Category = "",
                             PersonalInfoId = 1,
                             SkillLevelId = 2,
                             SkillName = "SQL"
@@ -130,7 +133,7 @@ namespace BioWeb.Server.Migrations
                         new
                         {
                             Id = 4,
-                            Category = "FrontEnd",
+                            Category = "",
                             PersonalInfoId = 1,
                             SkillLevelId = 2,
                             SkillName = "HTML"
@@ -138,7 +141,7 @@ namespace BioWeb.Server.Migrations
                         new
                         {
                             Id = 5,
-                            Category = "FrameWork",
+                            Category = "",
                             PersonalInfoId = 1,
                             SkillLevelId = 1,
                             SkillName = "React.js"
@@ -146,90 +149,10 @@ namespace BioWeb.Server.Migrations
                         new
                         {
                             Id = 6,
-                            Category = "FrontEnd",
+                            Category = "",
                             PersonalInfoId = 1,
                             SkillLevelId = 1,
                             SkillName = "CSS"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Category = "FrontEnd",
-                            PersonalInfoId = 1,
-                            SkillLevelId = 1,
-                            SkillName = "Javascript"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Category = "FrontEnd",
-                            PersonalInfoId = 1,
-                            SkillLevelId = 1,
-                            SkillName = "TypeScript"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Category = "Other",
-                            PersonalInfoId = 1,
-                            SkillLevelId = 1,
-                            SkillName = "Git"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Category = "Other",
-                            PersonalInfoId = 1,
-                            SkillLevelId = 1,
-                            SkillName = "Git Extensions"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Category = "Other",
-                            PersonalInfoId = 1,
-                            SkillLevelId = 1,
-                            SkillName = "RabbitMQ"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Category = "Other",
-                            PersonalInfoId = 1,
-                            SkillLevelId = 1,
-                            SkillName = "Elastic"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Category = "Other",
-                            PersonalInfoId = 1,
-                            SkillLevelId = 1,
-                            SkillName = "Jenkins"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Category = "Other",
-                            PersonalInfoId = 1,
-                            SkillLevelId = 1,
-                            SkillName = "Jenkins"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Category = "FrameWork",
-                            PersonalInfoId = 1,
-                            SkillLevelId = 1,
-                            SkillName = "Laminas"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Category = "FrameWork",
-                            PersonalInfoId = 1,
-                            SkillLevelId = 1,
-                            SkillName = ".Net"
                         });
                 });
 

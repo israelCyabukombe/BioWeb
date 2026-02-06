@@ -46,42 +46,128 @@ namespace BioWeb.Server.Data
                     Id = 1,
                     PersonalInfoId = 1,
                     SkillName = "C#",
-                    SkillLevelId = 1
+                    SkillLevelId = 1,
+                    Category = "BackEnd"
                 },
                 new Skill
                 {
                     Id = 2,
                     PersonalInfoId = 1,
                     SkillName = "PHP",
-                    SkillLevelId = 2
+                    SkillLevelId = 2,
+                    Category = "BackEnd"
                 },
                 new Skill
                 {
                     Id = 3,
                     PersonalInfoId = 1,
                     SkillName = "SQL",
-                    SkillLevelId = 2
+                    SkillLevelId = 2,
+                    Category = "BackEnd"
                 },
                 new Skill
                 {
                     Id = 4,
                     PersonalInfoId = 1,
                     SkillName = "HTML",
-                    SkillLevelId = 2
+                    SkillLevelId = 2,
+                    Category = "FrontEnd"
                 },
                 new Skill
                 {
                     Id = 5,
                     PersonalInfoId = 1,
                     SkillName = "React.js",
-                    SkillLevelId = 1
+                    SkillLevelId = 1,
+                    Category = "FrameWork"
                 },
                 new Skill
                 {
                     Id = 6,
                     PersonalInfoId = 1,
                     SkillName = "CSS",
-                    SkillLevelId = 1
+                    SkillLevelId = 1,
+                    Category = "FrontEnd"
+                },
+                new Skill
+                {
+                    Id = 7,
+                    PersonalInfoId = 1,
+                    SkillName = "Javascript",
+                    SkillLevelId = 1,
+                    Category = "FrontEnd"
+                },
+                new Skill
+                {
+                    Id = 8,
+                    PersonalInfoId = 1,
+                    SkillName = "TypeScript",
+                    SkillLevelId = 1,
+                    Category = "FrontEnd"
+                },
+                new Skill
+                {
+                    Id = 9,
+                    PersonalInfoId = 1,
+                    SkillName = "Git",
+                    SkillLevelId = 1,
+                    Category = "Other"
+                },
+                new Skill
+                {
+                    Id = 10,
+                    PersonalInfoId = 1,
+                    SkillName = "Git Extensions",
+                    SkillLevelId = 1,
+                    Category = "Other"
+                },
+                new Skill
+                {
+                    Id = 11,
+                    PersonalInfoId = 1,
+                    SkillName = "RabbitMQ",
+                    SkillLevelId = 1,
+                    Category = "Other"
+                },
+                new Skill
+                {
+                    Id = 12,
+                    PersonalInfoId = 1,
+                    SkillName = "Elastic",
+                    SkillLevelId = 1,
+                    Category = "Other"
+                },
+                new Skill
+                {
+                    Id = 13,
+                    PersonalInfoId = 1,
+                    SkillName = "Jenkins",
+                    SkillLevelId = 1,
+                    Category = "Other"
+                },
+                new Skill
+                {
+                    Id = 14,
+                    PersonalInfoId = 1,
+                    SkillName = "Jenkins",
+                    SkillLevelId = 1,
+                    Category = "Other"
+                },
+                new Skill
+                {
+                    Id = 15,
+                    PersonalInfoId = 1,
+                    SkillName = "Laminas",
+                    SkillLevelId = 1,
+                    Category = "FrameWork"
+                },
+                new Skill
+                {
+                    Id = 16,
+                    PersonalInfoId = 1,
+                    SkillName = ".Net",
+                    SkillLevelId = 1,
+                    Category = "FrameWork"
                 }
             );
 
