@@ -58,6 +58,15 @@ app.MapGet("/api/personalInfo/{id}", async (int id, IBiographyService service) =
 .WithName("GetPersonalInformation")
 .WithOpenApi();
 
+app.MapGet("/api/skills/", async (int personId, IBiographyService service) =>
+{
+    var skills = await service.GetSkills(personId);
+
+    return skills is not null ? Results.Ok(skills) : Results.NotFound();
+})
+.WithName("GetSkills")
+.WithOpenApi();
+
 app.MapFallbackToFile("/index.html");
 
 app.Run();

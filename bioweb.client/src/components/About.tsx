@@ -5,7 +5,6 @@ import goodSamPhoto from '../assets/GoodSam.jpg';
 import './About.css';
 
 import React, { useState, useEffect } from 'react';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 interface PersonalInfo {
 	firstName: string;
@@ -13,9 +12,22 @@ interface PersonalInfo {
 	summaryText: string;
 }
 
+interface Skill {
+	skillName: string;
+	skillLevelId: number;
+	skillLevel: SkillLevel;
+	category: string;
+}
+
+interface SkillLevel {
+	id: number;
+	description: string;
+}
+
 const About = () => {
 	
 	const [personalInfo, setPersonalInfo] = useState<PersonalInfo | null>(null);
+	const [skills, setSkills] = useState<Skill[]| null>(null);
 	
 	useEffect(() => {
 		fetch('https://localhost:7010/api/personalInfo/1')
@@ -23,6 +35,18 @@ const About = () => {
 			.then(data => setPersonalInfo(data))
 			.catch(error => console.error('Errof fethincg personal Info:', error));
 	}, []);
+
+	useEffect(() => {
+		fetch('https://localhost:7010/api/skills/?personId=1')
+			.then(response => response.json())
+			.then(data => setSkills(data))
+			.catch(error => console.error('Errof fethincg skills:', error));
+	}, []);
+
+	const frontEndSkills = skills?.filter(s => s.category === "FrontEnd");
+	const backEndSkills = skills?.filter(s => s.category === "BackEnd");
+	const otherSkills = skills?.filter(s => s.category === "Other");
+	const frameWorkSkills = skills?.filter(s => s.category === "FrameWork");
 	
 	if (!personalInfo) {
 		return <div>Loading...</div>
@@ -59,29 +83,37 @@ const About = () => {
 									<div className="skills-category">
 										<h6 className="category-title mb-3">Front End</h6>
 										<div className="skills-grid">
-											<span className="skill-badge">HTML</span>
-											<span className="skill-badge">CSS</span>
-											<span className="skill-badge">JavaScript</span>
-											<span className="skill-badge">TypeScript</span>
+											{frontEndSkills?.map(skill => (
+												<span className="skill-badge"> {skill.skillName} </span>
+											))}
 										</div>
 									</div>
 									<div className="skills-category">
 										<h6 className="category-title mb-3">Back End</h6>
 										<div className="skills-grid">
-											<span className="skill-badge">PHP</span>
-											<span className="skill-badge">C#</span>
-											<span className="skill-badge">Laminas</span>
-											<span className="skill-badge">.Net Core</span>
+											{backEndSkills?.map(skill => (
+												<span className="skill-badge">{skill.skillName}</span>
+											))}
 										</div>
 									</div>
-
 									<div className="skills-category">
 										<h6 className="category-title mb-3">Other Tools</h6>
 										<div className="skills-grid">
-											<span className="skill-badge">Git</span>
-											<span className="skill-badge">Git Extensions</span>
-											<span className="skill-badge">RabbitMQ</span>
-											<span className="skill-badge">Elastic</span>
+											<div className="skills-grid">
+												{otherSkills?.map(skill => (
+													<span className="skill-badge">{skill.skillName}</span>
+												))}
+											</div>
+										</div>
+									</div>
+									<div className="skills-category">
+										<h6 className="category-title mb-3">Frameworks</h6>
+										<div className="skills-grid">
+											<div className="skills-grid">
+												{frameWorkSkills?.map(skill => (
+													<span className="skill-badge">{skill.skillName}</span>
+												))}
+											</div>
 										</div>
 									</div>
 								</div>
