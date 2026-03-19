@@ -8,7 +8,7 @@
 .logo-img {
     max-width: 100px;
     height: auto;
-    border: 2px solid #f8f9fa;
+    border: 2px solid var(--border);
     border-radius: 10px;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .category-title {
-    color: #495057;
+    color: var(--text);
     font-size: 1rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -51,11 +51,11 @@
     display: inline-flex;
     align-items: center;
     padding: 0.4rem 1rem;
-    background: #f8f9fa;
-    color: #495057;
+    background: var(--card-bg);
+    color: var(--text);
     font-size: 0.875rem;
     font-weight: 500;
-    border: 2px solid #D3D0D9;
+    border: 2px solid var(--border);
     border-radius: 25px;
     transition: all 0.25s ease;
     cursor: pointer;
