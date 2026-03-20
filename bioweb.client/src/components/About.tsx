@@ -13,6 +13,7 @@ interface PersonalInfo {
 }
 
 interface Skill {
+	id: number;
 	skillName: string;
 	skillLevelId: number;
 	skillLevel: SkillLevel;
@@ -53,8 +54,8 @@ const About = () => {
 	}	
 	
 	return (
-		<div className="bg-light">
-			<div className="container bg-light">
+		<div>
+			<div className="container">
 				<div className="row align-items-center py-5">
 					<div className="col-lg-3 col-md-4 text-center mb-4 mb-md-0">
 						<div className="d-flex flex-column justify-content-center align-items-center text-center py-5">
@@ -73,7 +74,7 @@ const About = () => {
 							<h4 className="mb-3">
 								Software engineer building reliable web applications
 							</h4>
-							<p className="text-muted mb-4">
+							<p className="about-intro mb-4">
 								I enjoy turning complex problems into simple, robust solutions using modern web...
 							</p>
 							{/* Skills */}
@@ -84,7 +85,7 @@ const About = () => {
 										<h6 className="category-title mb-3">Front End</h6>
 										<div className="skills-grid">
 											{frontEndSkills?.map(skill => (
-												<span className="skill-badge"> {skill.skillName} </span>
+												<span className="skill-badge" key={skill.id}> {skill.skillName} </span>
 											))}
 										</div>
 									</div>
@@ -92,7 +93,7 @@ const About = () => {
 										<h6 className="category-title mb-3">Back End</h6>
 										<div className="skills-grid">
 											{backEndSkills?.map(skill => (
-												<span className="skill-badge">{skill.skillName}</span>
+												<span className="skill-badge" key={skill.id}>{skill.skillName}</span>
 											))}
 										</div>
 									</div>
@@ -101,7 +102,7 @@ const About = () => {
 										<div className="skills-grid">
 											<div className="skills-grid">
 												{otherSkills?.map(skill => (
-													<span className="skill-badge">{skill.skillName}</span>
+													<span className="skill-badge" key={skill.id}>{skill.skillName}</span>
 												))}
 											</div>
 										</div>
@@ -111,7 +112,7 @@ const About = () => {
 										<div className="skills-grid">
 											<div className="skills-grid">
 												{frameWorkSkills?.map(skill => (
-													<span className="skill-badge">{skill.skillName}</span>
+													<span className="skill-badge" key={skill.id}>{skill.skillName}</span>
 												))}
 											</div>
 										</div>
@@ -127,7 +128,7 @@ const About = () => {
 						</div>
 						
 					</div>
-					{/* Right Column: Work and School logos*/ }
+					{/* Right Column: Work and School logos*/}
 					<div className="col-lg-3 col-md-3 text-center">
 						<div className="d-flex flex-column align-items-center" style={{ gap: '1rem' }}>
 							<img src={sdsuPhoto} className="image-fluid mb-4 logo-img" alt="SDSU" />

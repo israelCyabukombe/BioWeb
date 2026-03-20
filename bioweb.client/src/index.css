@@ -1,0 +1,34 @@
+[data-theme='light'] {
+    --bg: #f7f7f7;
+    --text: #111111;
+    --card-bg: #ffffff;
+    --border: #dddddd;
+    --bs-secondary-color: #555555;
+}
+
+[data-theme='mid'] {
+    --bg: #b0b8c1;
+    --text: #111111;
+    --card-bg: #ececec;
+    --border: #cccccc;
+    --bs-secondary-color: #444444;
+}
+
+[data-theme='dark'] {
+    --bg: #1a1a2e;
+    --text: #ffffff;
+    --card-bg: #16213e;
+    --border: #333333;
+    --bs-secondary-color: rgba(240, 246, 252, 0.65);
+}
+
+html, body {
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.about-intro {
+    color: var(--text);
+    opacity: 0.75;
+}
