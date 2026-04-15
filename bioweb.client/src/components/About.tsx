@@ -1,10 +1,7 @@
-import myPhoto from '../assets/lion-animal-portrait.jpg';
-import sdsuPhoto from '../assets/JackRabbits.png';
-import sanfordPhoto from '../assets/SanfordHealth.jpg';
-import goodSamPhoto from '../assets/GoodSam.jpg';
+import myPhoto from '../assets/IMG_0002.jpg';
 import './About.css';
-
-import React, { useState, useEffect } from 'react';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
 
 interface PersonalInfo {
 	firstName: string;
@@ -26,7 +23,7 @@ interface SkillLevel {
 }
 
 const About = () => {
-	
+	const isLarge = window.innerWidth >= 992;	
 	const [personalInfo, setPersonalInfo] = useState<PersonalInfo | null>(null);
 	const [skills, setSkills] = useState<Skill[]| null>(null);
 	
@@ -55,27 +52,43 @@ const About = () => {
 	
 	return (
 		<div>
-			<div className="container">
-				<div className="row align-items-center py-5">
-					<div className="col-lg-3 col-md-4 text-center mb-4 mb-md-0">
-						<div className="d-flex flex-column justify-content-center align-items-center text-center py-5">
+			<div className="container-fluid">
+				<div className="row align-items-start py-5">
+					<div className="col-lg-4 col-md-4 text-center mb-4 mb-md-0 sticky-sidebar">
+						<div className="d-flex flex-column align-items-center text-center">
 							<img
 								src={myPhoto}
 								alt="My Portrait"
 								style={{ width: '200px', height: '240px', borderRadius: '50%', objectFit: 'cover', marginBottom: '12px' }}
 							/>
 							<h1 className="mb-1">{personalInfo.firstName} {personalInfo.lastName}</h1>
-							<h5 className="text-muted mb-0">Software Engineer</h5>
+							<h4 className="mb-0">Software Engineer</h4>
+
+							<div className="d-flex justify-content-center gap-3 mt-3">
+								<a href="https://github.com/israelCyabukombe" target="_blank" rel="noopener noreferrer"
+									aria-label="GitHub"
+									style={{ color: 'var(--text)', fontSize: '1.8rem' }}>
+									<FaGithub/>
+								</a>
+
+								<a href="https://www.linkedin.com/in/israel-cyabukombe-974ba2aa/" target="_blank" rel="noopener noreferrer"
+									aria-label="Linkedin"
+									style={{ color: 'var(--text)', fontSize: '1.8rem' }}
+								>
+									<FaLinkedin/>
+								</a>
+							</div>
+
 						</div>
 					</div>
-					<div className="col-lg-6 col-md-5 mb-4 mb-md-0 ps-lg-4">
-						<div style={{ maxWidth: '600px' }}>
+					<div className="col-lg-8 col-md-8 mb-4 mb-md-0 ps-lg-4">
+						<div>
 							{/* Intro */ }
 							<h4 className="mb-3">
-								Software engineer building reliable web applications
+								Software engineer
 							</h4>
 							<p className="about-intro mb-4">
-								I enjoy turning complex problems into simple, robust solutions using modern web...
+								{personalInfo.summaryText }
 							</p>
 							{/* Skills */}
 							<div className="about-skills mb-4">
@@ -119,21 +132,46 @@ const About = () => {
 									</div>
 								</div>
 							</div>
+							{/* Projects*/}
+							<div className="about-projects mb-4">
+								<h2 className="fw-bold mb-4">Projects</h2>
+								<div className="project-list">
+									<div className="project-card p-4 mb-4">
+										<div className="d-flex justify-content-between align-items-start mb-2">
+											<h5 className="fw-bold mb-0">Project 1</h5>
+										</div>
+										<p className="mb-3">
+											I enjoy turning complex problems into simple, robust solutions using
+											modern web...Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+											Sed scelerisque ante pellentesque tincidunt varius. 
+										</p>
+										<div className="skills-grid">
+											<span className="skill-badge" key="1"> PHP </span>
+											<span className="skill-badge" key="2"> C# </span>
+										</div>
+									</div>
+									<div className="project-card p-4 mb-4">
+										<div className="d-flex justify-content-between align-items-start mb-2">
+											<h5 className="fw-bold mb-0">Project 2</h5>
+										</div>
+										<p className="mb-3">
+											I enjoy turning complex problems into simple, robust solutions using
+											modern web...Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+											Sed scelerisque ante pellentesque tincidunt varius.
+										</p>
+										<div className="skills-grid">
+											<span className="skill-badge" key="1"> PHP </span>
+											<span className="skill-badge" key="2"> C# </span>
+										</div>
+									</div>
+								</div>
+							</div>	
 							{/* Education*/ }
 							<div className="mb-3">
 								<h5 className="fw-bold mb-1">Education</h5>
-								<p>B.Sc. in Computer Science, University Name</p>
-								<p>{personalInfo.summaryText}</p>
+								<p>B.Sc. in Computer Science, South Dakota State University(SDSU)</p>
+								<p>Completed Computer Science with minor in Mathematics</p>
 							</div>
-						</div>
-						
-					</div>
-					{/* Right Column: Work and School logos*/}
-					<div className="col-lg-3 col-md-3 text-center">
-						<div className="d-flex flex-column align-items-center" style={{ gap: '1rem' }}>
-							<img src={sdsuPhoto} className="image-fluid mb-4 logo-img" alt="SDSU" />
-							<img src={sanfordPhoto} className="image-fluid mb-4 logo-img" alt="SDSU"/>
-							<img src={goodSamPhoto} className="image-fluid mb-4 logo-img" alt="SDSU"  />
 						</div>
 					</div>
 				</div>		
