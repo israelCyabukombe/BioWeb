@@ -61,3 +61,25 @@
     cursor: pointer;
     white-space: nowrap;
 }
+.project-card {
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    background: var(--card-bg);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.sticky-sidebar {
+    align-self: flex-start;
+}
+
+@media (min-width: 992px) {
+    .sticky-sidebar {
+        position: sticky;
+        top: 75px;
+    }
+}
