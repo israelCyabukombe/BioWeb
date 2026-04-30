@@ -6,5 +6,7 @@ namespace BioWeb.Server.Services
     public interface IBiographyService
     {
         Task<PersonalInfo?> GetPersonalInfo(int id);
+
+        Task<List<Skill>> GetSkills(int personId);
     }
 }
