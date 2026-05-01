@@ -28,14 +28,14 @@ const About = () => {
 	const [skills, setSkills] = useState<Skill[]| null>(null);
 	
 	useEffect(() => {
-		fetch('https://localhost:7010/api/personalInfo/1')
+		fetch('/api/personalInfo/1')
 			.then(response => response.json())
 			.then(data => setPersonalInfo(data))
 			.catch(error => console.error('Errof fethincg personal Info:', error));
 	}, []);
 
 	useEffect(() => {
-		fetch('https://localhost:7010/api/skills/?personId=1')
+		fetch('/api/skills/?personId=1')
 			.then(response => response.json())
 			.then(data => setSkills(data))
 			.catch(error => console.error('Errof fethincg skills:', error));

@@ -21,12 +21,15 @@ builder.Services.AddScoped<IBiographyService, BiographyService>();
 
 //CORS
 var corsPolicy = "_myAllowSpecificOrigins";
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name:corsPolicy, builder =>
         builder.WithOrigins(
             "http://localhost:5174",
-            "http://localhost:5173"
+            "http://localhost:5173",
+            "https://icy-desert-022716310.7.azurestaticapps.net",
+            "https://bioweb-server-fkf6c7b0d2dkdede.centralus-01.azurewebsites.net"
         )
         .AllowAnyHeader()
         .AllowAnyMethod()
