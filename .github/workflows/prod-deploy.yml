@@ -1,0 +1,57 @@
+name: Deploy Server and Run Migrations
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Build, Migrate, Deploy Server
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Install EF Core CLI
+        run: dotnet tool install --global dotnet-ef
+
+      - name: Add dotnet tools to PATH
+        run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+
+      - name: Restore
+        run: dotnet restore BioWeb.sln
+
+      - name: Build
+        run: dotnet build BioWeb.sln --configuration Release --no-restore
+
+      - name: Generate idempotent migration script
+        run: >
+          dotnet ef migrations script
+          --idempotent
+          --project ./BioWeb.Server/BioWeb.Server.csproj
+          --startup-project ./BioWeb.Server/BioWeb.Server.csproj
+          --output ./migrations.sql
+
+      - name: Apply migrations to production DB
+        uses: azure/sql-action@v2
+        with:
+          connection-string: ${{ secrets.DB_CONNECTION_STRING }}
+          path: ./migrations.sql
+
+      - name: Publish server
+        run: dotnet publish ./BioWeb.Server/BioWeb.Server.csproj --configuration Release --output ./publish
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: bioweb-server
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ./publish
