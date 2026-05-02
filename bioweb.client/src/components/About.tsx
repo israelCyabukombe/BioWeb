@@ -26,16 +26,20 @@ const About = () => {
 	const isLarge = window.innerWidth >= 992;	
 	const [personalInfo, setPersonalInfo] = useState<PersonalInfo | null>(null);
 	const [skills, setSkills] = useState<Skill[]| null>(null);
-	
+
+	const apiBaseUrl = import.meta.env.PROD
+		? import.meta.env.VITE_API_URL
+		: '/api';
+
 	useEffect(() => {
-		fetch('/api/personalInfo/1')
+		fetch(`${apiBaseUrl}/personalInfo/1`)
 			.then(response => response.json())
 			.then(data => setPersonalInfo(data))
 			.catch(error => console.error('Errof fethincg personal Info:', error));
 	}, []);
 
 	useEffect(() => {
-		fetch('/api/skills/?personId=1')
+		fetch(`${apiBaseUrl}/skills/?personId=1`)
 			.then(response => response.json())
 			.then(data => setSkills(data))
 			.catch(error => console.error('Errof fethincg skills:', error));
