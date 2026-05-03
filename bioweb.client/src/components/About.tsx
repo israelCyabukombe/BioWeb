@@ -75,8 +75,6 @@ const About = () => {
 	}, [apiBaseUrl]);
 
 	useEffect(() => {
-		if (!personalInfo) return;
-
 		fetch(`${apiBaseUrl}/skills/?personId=1`)
 			.then(response => response.json())
 			.then(data => setSkills(data))
