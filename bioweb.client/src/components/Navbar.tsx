@@ -18,7 +18,7 @@ const MyNavbar = () => {
                             <NavDropdown.Item href="https://github.com/israelCyabukombe" target="_blank">My GitHub</NavDropdown.Item>
                             <NavDropdown.Item href="https://www.linkedin.com/in/israel-cyabukombe-974ba2aa/" target="_blank">My Linkedln</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link className="mx-5" as={Link} to="/contact">Contact</Nav.Link>
+                        {/*<Nav.Link className="mx-5" as={Link} to="/contact">Contact</Nav.Link>*/}
                     </Nav>
                     <div className="d-flex align-items-center ms-3">
                         <button

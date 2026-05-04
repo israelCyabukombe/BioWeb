@@ -63,7 +63,7 @@ app.MapGet("/api/personalInfo/{id}", async (int id, IBiographyService service) =
 .WithName("GetPersonalInformation")
 .WithOpenApi();
 
-app.MapGet("/api/skills/", async (int personId, IBiographyService service) =>
+app.MapGet("/api/skills", async (int personId, IBiographyService service) =>
 {
     var skills = await service.GetSkills(personId);
 
@@ -71,6 +71,19 @@ app.MapGet("/api/skills/", async (int personId, IBiographyService service) =>
 })
 .WithName("GetSkills")
 .WithOpenApi();
+
+app.MapGet("/api/health", () =>
+{
+    return Results.Ok(new
+    {
+        status = "healthy",
+        service = "bioweb-service",
+        dateUtc = DateTime.UtcNow,
+    });
+})
+.WithName("health")
+.WithOpenApi();
+
 
 app.MapFallbackToFile("/index.html");
 

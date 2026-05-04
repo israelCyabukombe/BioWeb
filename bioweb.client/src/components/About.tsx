@@ -32,46 +32,10 @@ const About = () => {
 		: '/api';
 
 	useEffect(() => {
-		let cancelled = false;
-
-		const sleep = (ms: number) =>
-			new Promise(resolve => setTimeout(resolve, ms));
-
-		const fetchPersonalInfo = async (): Promise<void> => {
-			const retryDelays = [0, 1500, 3000];
-
-			for (let attempt = 0; attempt < retryDelays.length; attempt++) {
-
-				try {
-					if (retryDelays[attempt] > 0) {
-						await sleep(retryDelays[attempt]);
-					}
-					const response = await fetch(`${apiBaseUrl}/personalInfo/1`);
-
-					if (!response.ok) {
-						throw new Error(`HTTP ${response.status}`);
-					}
-
-					const data = await response.json();
-
-					if (!cancelled) {
-						setPersonalInfo(data);
-					}
-
-					return;
-
-				} catch (error) {
-					if (attempt === retryDelays.length - 1 && !cancelled) {
-						console.error('Error fetching personal info:', error);
-					}
-				}
-			}
-		};
-		void fetchPersonalInfo();
-
-		return () => {
-			cancelled = true;
-		};
+		fetch(`${apiBaseUrl}/personalInfo/1`)
+			.then(response => response.json())
+			.then(data => setPersonalInfo(data))
+			.catch(error => console.error('Error fetching persibak info:', error));
 	}, [apiBaseUrl]);
 
 	useEffect(() => {
