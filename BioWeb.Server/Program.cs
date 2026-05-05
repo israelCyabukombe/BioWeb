@@ -40,7 +40,14 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-app.UseDefaultFiles();
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+    await db.Database.ExecuteSqlRawAsync("SELECT 1");
+}
+
+    app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseCors(corsPolicy);
