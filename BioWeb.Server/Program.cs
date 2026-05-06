@@ -15,7 +15,15 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("BioWebDb");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(
+        connectionString,
+        sqlOptions => sqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 5,
+            maxRetryDelay: TimeSpan.FromSeconds(10),
+            errorNumbersToAdd: null
+        )
+    )
+ );
 
 builder.Services.AddScoped<IBiographyService, BiographyService>();
 
@@ -40,14 +48,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-
-    await db.Database.ExecuteSqlRawAsync("SELECT 1");
-}
-
-    app.UseDefaultFiles();
+app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseCors(corsPolicy);
