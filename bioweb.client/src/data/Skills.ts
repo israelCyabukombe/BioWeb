@@ -1,0 +1,17 @@
+export const skills = [
+    { id: 1, skillName: "C#", skillLevelId: 1, category: "BackEnd" },
+    { id: 2, skillName: "PHP", skillLevelId: 2, category: "BackEnd" },
+    { id: 3, skillName: "SQL", skillLevelId: 2, category: "BackEnd" },
+    { id: 4, skillName: "HTML", skillLevelId: 2, category: "FrontEnd" },
+    { id: 5, skillName: "React.js", skillLevelId: 1, category: "FrameWork" },
+    { id: 6, skillName: "CSS", skillLevelId: 1, category: "FrontEnd" },
+    { id: 7, skillName: "Javascript", skillLevelId: 1, category: "FrontEnd" },
+    { id: 8, skillName: "TypeScript", skillLevelId: 1, category: "FrontEnd" },
+    { id: 9, skillName: "Git", skillLevelId: 1, category: "Other" },
+    { id: 10, skillName: "Git Extensions", skillLevelId: 1, category: "Other" },
+    { id: 11, skillName: "RabbitMQ", skillLevelId: 1, category: "Other" },
+    { id: 12, skillName: "Elastic", skillLevelId: 1, category: "Other" },
+    { id: 13, skillName: "Jenkins", skillLevelId: 1, category: "Other" },
+    { id: 15, skillName: "Laminas", skillLevelId: 1, category: "FrameWork" },
+    { id: 16, skillName: ".Net", skillLevelId: 1, category: "FrameWork" },
+] as const;
