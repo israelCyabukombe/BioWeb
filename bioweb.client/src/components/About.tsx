@@ -2,20 +2,8 @@ import myPhoto from '../assets/IMG_0002.jpg';
 import './About.css';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
-
-interface PersonalInfo {
-	firstName: string;
-	lastName: string;
-	summaryText: string;
-}
-
-interface Skill {
-	id: number;
-	skillName: string;
-	skillLevelId: number;
-	skillLevel: SkillLevel;
-	category: string;
-}
+import { personalInfo } from '../data/PersonalInfo';
+import { skills } from '../data/Skills';
 
 interface SkillLevel {
 	id: number;
@@ -23,36 +11,23 @@ interface SkillLevel {
 }
 
 const About = () => {
-	const isLarge = window.innerWidth >= 992;	
-	const [personalInfo, setPersonalInfo] = useState<PersonalInfo | null>(null);
-	const [skills, setSkills] = useState<Skill[]| null>(null);
-
+	const isLarge = window.innerWidth >= 992;
 	const apiBaseUrl = import.meta.env.PROD
 		? import.meta.env.VITE_API_URL
 		: '/api';
 
-	useEffect(() => {
-		fetch(`${apiBaseUrl}/personalInfo/1`)
-			.then(response => response.json())
-			.then(data => setPersonalInfo(data))
-			.catch(error => console.error('Error fetching persibak info:', error));
-	}, [apiBaseUrl]);
+	//useEffect(() => {
+	//	fetch(`${apiBaseUrl}/personalInfo/1`)
+	//		.then(response => response.json())
+	//		.then(data => setPersonalInfo(data))
+	//		.catch(error => console.error('Error fetching persibak info:', error));
+	//}, [apiBaseUrl]);
 
-	useEffect(() => {
-		fetch(`${apiBaseUrl}/skills/?personId=1`)
-			.then(response => response.json())
-			.then(data => setSkills(data))
-			.catch(error => console.error('Error fetching skills:', error));
-	}, [apiBaseUrl]);
+	const frontEndSkills = skills.filter(s => s.category === "FrontEnd");
+	const backEndSkills = skills.filter(s => s.category === "BackEnd");
+	const otherSkills = skills.filter(s => s.category === "Other");
+	const frameWorkSkills = skills.filter(s => s.category === "FrameWork");
 
-	const frontEndSkills = skills?.filter(s => s.category === "FrontEnd");
-	const backEndSkills = skills?.filter(s => s.category === "BackEnd");
-	const otherSkills = skills?.filter(s => s.category === "Other");
-	const frameWorkSkills = skills?.filter(s => s.category === "FrameWork");
-	
-	if (!personalInfo) {
-		return <div>Loading...</div>
-	}	
 	
 	return (
 		<div>
@@ -66,7 +41,7 @@ const About = () => {
 								style={{ width: '200px', height: '240px', borderRadius: '50%', objectFit: 'cover', marginBottom: '12px' }}
 							/>
 							<h1 className="mb-1">{personalInfo.firstName} {personalInfo.lastName}</h1>
-							<h4 className="mb-0">Software Engineer</h4>
+							<h4 className="mb-0">{personalInfo.jobTitle}</h4>
 
 							<div className="d-flex justify-content-center gap-3 mt-3">
 								<a href="https://github.com/israelCyabukombe" target="_blank" rel="noopener noreferrer"
@@ -89,7 +64,7 @@ const About = () => {
 						<div>
 							{/* Intro */ }
 							<h4 className="mb-3">
-								Software engineer
+								{personalInfo.jobTitle}
 							</h4>
 							<p className="about-intro mb-4">
 								{personalInfo.summaryText }
