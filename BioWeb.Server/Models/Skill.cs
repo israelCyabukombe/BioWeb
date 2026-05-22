@@ -8,7 +8,7 @@ namespace BioWeb.Server.Models
         public int Id { get; set; }
 
         [ForeignKey(nameof(PersonalInfo))]
-        public int PersonalInfoId {  get; set; }
+        public int PersonalInfoId { get; set; }
 
         public PersonalInfo PersonalInfo { get; set; } = null!;
 
@@ -21,5 +21,6 @@ namespace BioWeb.Server.Models
 
         [MaxLength(20)]
         public string Category { get; set; } = string.Empty;
+        public ICollection<ProjectSkill> ProjectSkills { get; set; } = new List<ProjectSkill>();
     }
 }

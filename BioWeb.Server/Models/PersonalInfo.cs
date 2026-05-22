@@ -20,8 +20,6 @@ namespace BioWeb.Server.Models
 
         [MaxLength(1000)]
         public string SummaryText { get; set; } = string.Empty;
-
-
         public ICollection<Skill> Skills { get; set; } = new List<Skill>();
     }
 }

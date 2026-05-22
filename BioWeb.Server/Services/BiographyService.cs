@@ -1,5 +1,6 @@
 ﻿
 using BioWeb.Server.Data;
+using BioWeb.Server.Dtos;
 using BioWeb.Server.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,25 @@ namespace BioWeb.Server.Services
             var pInfo = await _context.PersonalInfos.FindAsync(id);
 
             return pInfo;
+        }
+
+        public async Task<List<ProjectDto>> GetProjects()
+        {
+            var projects = await _context.Projects
+                .Include(p => p.ProjectSkills)
+                .ThenInclude(ps => ps.Skill)
+                .OrderByDescending(p => p.SortOrder)
+                .Select(p => new ProjectDto(
+                    p.Id,
+                    p.Title,
+                    p.Description,
+                    p.LiveUrl,
+                    p.RepoUrl,
+                    p.ProjectSkills.Select(ps => ps.Skill.SkillName).ToList()
+                ))
+                .ToListAsync();
+                
+            return projects ?? new List<ProjectDto>();
         }
 
         async Task<List<Skill>> IBiographyService.GetSkills(int personId)
