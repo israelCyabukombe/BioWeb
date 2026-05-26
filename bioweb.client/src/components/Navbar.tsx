@@ -14,6 +14,9 @@ const MyNavbar = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mx-auto">
                         <Nav.Link className="mx-5" as={Link} to="/">About</Nav.Link>
+                        <Nav.Link href="/Israel Cyabu - Resume.pdf" target="_blank" className="mx-5">
+                            R&eacute;sum&eacute;
+                        </Nav.Link>
                         <NavDropdown className="mx-5" title="Links" id="links-dropdown">
                             <NavDropdown.Item href="https://github.com/israelCyabukombe" target="_blank">My GitHub</NavDropdown.Item>
                             <NavDropdown.Item href="https://www.linkedin.com/in/israel-cyabukombe-974ba2aa/" target="_blank">My Linkedln</NavDropdown.Item>

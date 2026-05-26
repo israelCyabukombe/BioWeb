@@ -92,6 +92,15 @@ app.MapGet("/api/health", () =>
 .WithName("health")
 .WithOpenApi();
 
+app.MapGet("/api/projects", async (IBiographyService service) =>
+{
+    var projects = await service.GetProjects();
+
+    return projects is not null ? Results.Ok(projects) : Results.NotFound();
+})
+.WithName("GetProjects")
+.WithOpenApi();
+
 
 app.MapFallbackToFile("/index.html");
 

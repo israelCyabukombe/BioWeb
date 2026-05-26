@@ -17,6 +17,8 @@ namespace BioWeb.Server.Data
         public DbSet<SkillLevel> SkillLevels { get; set; }
 
         public DbSet<Skill> Skills { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectSkill> ProjectSkills { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,9 +31,10 @@ namespace BioWeb.Server.Data
                     FirstName = "Israel",
                     LastName = "Cyabukombe",
                     Email = "israel.cyabu93@gmail.com",
-                    ProfilePhotoUrl = "/images/IMG_0002.jpg",
-                    SummaryText = "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos."
-                }
+                    ProfilePhotoUrl = "/assets/IMG_0002.jpg",
+                    SummaryText = "Full‑stack software engineer with 8 years of experience building enterprise healthcare " +
+                        "applications in PHP (Laminas/Mezzio) and .NET, with expertise in senior care operations, document " +
+                        "management, and designing automated reports that help stakeholders understand and act on their data.",                }
             );
 
             modelBuilder.Entity<SkillLevel>().HasData(
@@ -149,15 +152,15 @@ namespace BioWeb.Server.Data
                 {
                     Id = 14,
                     PersonalInfoId = 1,
-                    SkillName = "Jenkins",
+                    SkillName = "Laminas",
                     SkillLevelId = 1,
-                    Category = "Other"
+                    Category = "FrameWork"
                 },
                 new Skill
                 {
                     Id = 15,
                     PersonalInfoId = 1,
-                    SkillName = "Laminas",
+                    SkillName = ".Net",
                     SkillLevelId = 1,
                     Category = "FrameWork"
                 },
@@ -165,11 +168,37 @@ namespace BioWeb.Server.Data
                 {
                     Id = 16,
                     PersonalInfoId = 1,
-                    SkillName = ".Net",
-                    SkillLevelId = 1,
-                    Category = "FrameWork"
+                    SkillName = "MySQL",
+                    SkillLevelId = 2,
+                    Category = "BackEnd"
+                },
+                new Skill
+                {
+                    Id = 17,
+                    PersonalInfoId = 1,
+                    SkillName = "MariaDB",
+                    SkillLevelId = 2,
+                    Category = "BackEnd"
+                },
+                new Skill
+                {
+                    Id = 18,
+                    PersonalInfoId = 1,
+                    SkillName = "Azure",
+                    SkillLevelId = 2,
+                    Category = "Other"
                 }
             );
+
+            modelBuilder.Entity<ProjectSkill>()
+                .HasOne(ps => ps.Project)
+                .WithMany(p => p.ProjectSkills)
+                .HasForeignKey(ps => ps.ProjectId);
+
+            modelBuilder.Entity<ProjectSkill>()
+                .HasOne(ps => ps.Skill)
+                .WithMany(s => s.ProjectSkills)
+                .HasForeignKey(ps => ps.SkillId);
 
         }
     }
