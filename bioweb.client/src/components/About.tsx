@@ -19,13 +19,13 @@ interface Project {
 }
 
 const About = () => {
-	const isLarge = window.innerWidth >= 992;
 	const apiBaseUrl = import.meta.env.PROD
 		? import.meta.env.VITE_API_URL
 		: '/api';
 
 	const [projects, setProjects] = useState<Project[]>([]);
-	const [projectsLoading, setProjectsLoading] = useState(true);
+    const [projectsLoading, setProjectsLoading] = useState(true);
+    const [projectsLoadingMsg, setProjectsLoadingMsg] = useState('');
 	const [projectsError, setProjectsError] = useState<string | null>(null);
 	const [openSkillsId, setOpenSkillsId] = useState<number | null>(null);
 	const frontEndSkills = skills.filter(s => s.category === "FrontEnd");
@@ -52,20 +52,46 @@ const About = () => {
 	}
 
 	//Projects fetch and load
-	useEffect(() => {
-		const loadProjects = async () => {
+    useEffect(() => {
+        let t1: ReturnType<typeof setTimeout>;
+        let t2: ReturnType<typeof setTimeout>;
+        let t3: ReturnType<typeof setTimeout>;
+        let t4: ReturnType<typeof setTimeout>;
+
+        const loadProjects = async () => {
+            setProjectsLoadingMsg('Loading Projects...');
+
+            t1 = setTimeout(() => setProjectsLoadingMsg('Connecting to Db...'), 4000);
+
+            t2 = setTimeout(() => setProjectsLoadingMsg('Database is waking up from being a sleep on free-tier...'), 12000);
+
+            t1 = setTimeout(() => setProjectsLoadingMsg('Almost there, hang tight!'), 25000);
+
+            t1 = setTimeout(() => setProjectsLoadingMsg('Taking longer than usual... try reload'), 40000);
+
 			try {
 				const response = await fetchWithRetry(`${apiBaseUrl}/projects`);
 				const data = await response.json();
 				setProjects(data);
 			} catch (err) {
 				setProjectsError('Projects failed to load.');
-			} finally {
+            } finally {
+                clearTimeout(t1);
+                clearTimeout(t2);
+                clearTimeout(t3);
+                clearTimeout(t4);
 				setProjectsLoading(false);
 			}
 		}
 		//call load projects
-		loadProjects();
+        loadProjects();
+
+        return () => {
+            clearTimeout(t1);
+            clearTimeout(t2);
+            clearTimeout(t3);
+            clearTimeout(t4);
+        };        
 	}, [apiBaseUrl]);
 
     return (
@@ -155,13 +181,14 @@ const About = () => {
                                 <h2 className="fw-bold mb-4">Projects</h2>
                                 <div className="project-list">
                                     {projectsLoading ? (
-                                        <div className="d-flex justify-content-center mt-4">
-                                            <div className="spinner-border text-light" role="status">
+                                        <div className="d-flex flex-column align-items-center mt-4 gap-2">
+                                            <div className="spinner-border" role="status" style={{ color: 'var(--text)' }} >
                                                 <span className="visually-hidden">Loading projects...</span>
                                             </div>
+                                            <p className="small text-center mb-0" style={{ color: 'var(--text)' }}>{projectsLoadingMsg}</p>
                                         </div>
                                     ) : projectsError ? (
-                                        <div className="text-muted small mt-3">{projectsError}</div>
+                                            <div className="small mt-3" style={{ color: 'var(--text)' }}>{projectsError}</div>
                                     ) : (
                                         projects.map(project => (
                                             <div key={project.id} className="project-card p-4 mb-4">
