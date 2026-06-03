@@ -178,7 +178,7 @@ const About = () => {
                             </div>
                             {/* Projects */}
                             <div className="about-projects mb-4">
-                                <h2 className="fw-bold mb-4">Projects</h2>
+                                <h2 className="fw-bold mb-4">Project Samples</h2>
                                 <div className="project-list">
                                     {projectsLoading ? (
                                         <div className="d-flex flex-column align-items-center mt-4 gap-2">
