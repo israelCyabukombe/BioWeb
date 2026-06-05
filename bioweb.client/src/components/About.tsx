@@ -65,9 +65,9 @@ const About = () => {
 
             t2 = setTimeout(() => setProjectsLoadingMsg('Database cold start detected, this might take a few more seconds...'), 12000);
 
-            t3 = setTimeout(() => setProjectsLoadingMsg('Almost there, hang tight!'), 32000);
+            t3 = setTimeout(() => setProjectsLoadingMsg('Almost there, hang tight!'), 40000);
 
-            t4 = setTimeout(() => setProjectsLoadingMsg('Taking longer than usual... try reload'), 50000);
+            t4 = setTimeout(() => setProjectsLoadingMsg('Taking longer than usual... try reload'), 60000);
 
 			try {
 				const response = await fetchWithRetry(`${apiBaseUrl}/projects`);
