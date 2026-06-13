@@ -14,4 +14,5 @@ export const skills = [
     { id: 13, skillName: "Jenkins", skillLevelId: 1, category: "Other" },
     { id: 15, skillName: "Laminas", skillLevelId: 1, category: "FrameWork" },
     { id: 16, skillName: ".Net", skillLevelId: 1, category: "FrameWork" },
+    { id: 17, skillName: "C++", skillLevelId: 2, category: "BackEnd" },
 ] as const;
