@@ -3,8 +3,6 @@ import './components/Navbar.tsx';
 import MyNavbar from './components/Navbar.tsx';
 import { Routes, Route } from 'react-router-dom';;
 import About from './components/About.tsx';
-import Skills from './components/Skills.tsx';
-import Contact from './components/Contact.tsx';
 
 function App() {
 
