@@ -14,7 +14,7 @@ const MyNavbar = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mx-auto">
                         <Nav.Link className="mx-5" as={Link} to="/">About</Nav.Link>
-                        <Nav.Link href="/Israel Cyabu - Resume.pdf" target="_blank" className="mx-5">
+                        <Nav.Link href="/ISRAEL CYABUKOMBE RESUME.pdf" target="_blank" className="mx-5">
                             R&eacute;sum&eacute;
                         </Nav.Link>
                         <NavDropdown className="mx-5" title="Links" id="links-dropdown">
