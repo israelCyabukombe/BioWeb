@@ -50,7 +50,8 @@ builder.Services.AddCors(options =>
             "http://localhost:4173",
             "https://icy-desert-022716310.7.azurestaticapps.net",
             "https://bioweb-server-fkf6c7b0d2dkdede.centralus-01.azurewebsites.net",
-            "https://www.icyabu.com"
+            "https://www.icyabu.com",
+            "https://icyabu.com"
         )
         .AllowAnyHeader()
         .AllowAnyMethod()
