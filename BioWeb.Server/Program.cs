@@ -9,6 +9,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -58,6 +60,33 @@ builder.Services.AddCors(options =>
     );
 });
 
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddPolicy("public-read", httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            factory: partition => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 100,
+                Window = TimeSpan.FromMinutes(1),
+                QueueLimit = 0
+            }
+        ));
+
+    options.AddPolicy("token", httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            factory: partition => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 5,
+                Window = TimeSpan.FromMinutes(1),
+                QueueLimit = 0
+            }
+        ));
+
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+});
+
 var jwtKey = builder.Configuration["Jwt:Key"]!;
 
 builder.Services.AddAuthentication(options =>
@@ -87,6 +116,7 @@ app.UseStaticFiles();
 
 app.UseCors(corsPolicy);
 app.UseHttpsRedirection();
+app.UseRateLimiter();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -103,7 +133,8 @@ app.MapGet("/api/personalInfo/{id}", async (int id, IBiographyService service) =
     return pInfo is not null ? Results.Ok(pInfo) : Results.NotFound();
 })
 .WithName("GetPersonalInformation")
-.WithOpenApi();
+.WithOpenApi()
+.RequireRateLimiting("public-read");
 
 app.MapGet("/api/skills", async (int personId, IBiographyService service) =>
 {
@@ -112,7 +143,8 @@ app.MapGet("/api/skills", async (int personId, IBiographyService service) =>
     return skills is not null ? Results.Ok(skills) : Results.NotFound();
 })
 .WithName("GetSkills")
-.WithOpenApi();
+.WithOpenApi()
+.RequireRateLimiting("public-read");
 
 app.MapGet("/api/health", () =>
 {
@@ -124,7 +156,8 @@ app.MapGet("/api/health", () =>
     });
 })
 .WithName("health")
-.WithOpenApi();
+.WithOpenApi()
+.RequireRateLimiting("public-read");
 
 app.MapGet("/api/projects", async (IBiographyService service) =>
 {
@@ -133,7 +166,8 @@ app.MapGet("/api/projects", async (IBiographyService service) =>
     return projects is not null ? Results.Ok(projects) : Results.NotFound();
 })
 .WithName("GetProjects")
-.WithOpenApi();
+.WithOpenApi()
+.RequireRateLimiting("public-read");
 
 //token
 app.MapPost("/api/token",
@@ -178,7 +212,8 @@ app.MapPost("/api/token",
     }
 
     return Task.FromResult(Results.Unauthorized());
-});
+})
+.RequireRateLimiting("token");
  
 
 
