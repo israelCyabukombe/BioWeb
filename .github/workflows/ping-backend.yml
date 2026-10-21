@@ -10,5 +10,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Ping health endpoint
-        run: curl -fsS https://bioweb-server-fkf6c7b0d2dkdede.centralus-01.azurewebsites.net/api/health
+      - name: Warm projects endpoint
+        run: curl -fsS https://bioweb-server-fkf6c7b0d2dkdede.centralus-01.azurewebsites.net/api/projects

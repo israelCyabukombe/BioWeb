@@ -109,6 +109,8 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.Configure<MyBioSettings>(builder.Configuration.GetSection("MyBioSettings"));
 
+builder.Services.AddMemoryCache();
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
