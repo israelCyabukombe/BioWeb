@@ -32,7 +32,8 @@ namespace BioWeb.Server.Services
 
             if (!_cache.TryGetValue(cacheKey, out List<ProjectDto>? projects) || projects is null)
             {
-                
+                Console.WriteLine($"[{DateTime.UtcNow:O}] GET api/Projects: Cache Miss- fetching projects from the database...");
+
                 projects = await _context.Projects
                     .Include(p => p.ProjectSkills)
                     .ThenInclude(ps => ps.Skill)
@@ -50,9 +51,15 @@ namespace BioWeb.Server.Services
                 var cacheEntryOptions = new MemoryCacheEntryOptions()
                     .SetAbsoluteExpiration(DateTimeOffset.UtcNow.AddMonths(6));
 
-                _cache.Set(cacheKey, projects, cacheEntryOptions);                
-            }
+                _cache.Set(cacheKey, projects, cacheEntryOptions);
 
+                Console.WriteLine($"[{DateTime.UtcNow:O}] GET api/Projects: Loaded {projects.Count} projects from the database and cached them.");
+            }
+            else
+            {
+                Console.WriteLine($"[{DateTime.UtcNow:O}] GET api/Projects: Cache Hit- returning cached projects.");
+            }
+            
             return projects;
         }
 
